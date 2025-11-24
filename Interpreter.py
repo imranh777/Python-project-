@@ -5,7 +5,7 @@
 ###            automatically in response to user commands via an interactive command-line     ###
 ###            interface. The interpreter represents the user interacting with their mailbox. ###
 ### Partner A:                                                                                ###
-###            <Full name as appears on Moodle>, SID<student ID>                              ###
+###         Ruhul Amin, SID 001507871                                                         ###
 ### Partner B:                                                                                ###
 ###            <Full name as appears on Moodle>, SID<student ID>                              ###
 #################################################################################################
@@ -34,7 +34,7 @@ def gen_emails():
     """ generates list of email strings
         :rtype: list """
     msgs, msg_id = [], 0
-    for i in range(40):     # sent 40 email
+    for i in range(41):     # sent 40 email increased 1
         msg = ''
         for j in range(30): # to 30 destinations each
             msg += f"ID:{str(msg_id)}"+"\n"
@@ -89,27 +89,40 @@ def loop():
                 # add email1223@gre.ac.uk email723@gre.ac.uk 29/5/2025 subject99 conf %%Body99911. Isfeo afwco sxzmp.
                 # add email142@gre.ac.uk email788@gre.ac.uk 29/5/2025 subject88 prsnl %%Body11332. Isfffffeo sxzmp.
                 # add email116@gre.ac.uk email142@gre.ac.uk 29/5/2025 subject36 tag1 %%Body:Body68. Wods vmm tskgdrxzrk.
-                pass
-            case 'del':  # move email with given ID to bin folder
-                # example command prompt:
-                # del 10
-                pass
+                # Passing all the arguments to create email object and add to mailbox
+                frm = args[0]
+                to = args[1]
+                date = args[2]
+                subject = args[3]
+                tag = args[4]
+                body = ' '.join(args[5:]) #from 5th index to end of list
+                if body.startswith('%%'):
+                    body = body[2:]
+
+                mba.add_email(frm, to, date, subject, tag, body)
+                print("Email added to mailbox.")
+                
+            case 'del':            
+                # getting the email ID from args list to delete email
+                deleteEmailID = args[0]
+                print(mba.del_email(deleteEmailID))
             case 'flt':
-                # example command prompt:
-                # flt email13
-                pass
+                # called filter method from MailboxAgent class to filter emails from given sender
+                sender = args[0]
+                print(mba.filter(sender))
+                
             case 'fnd':
                 # example command prompt:
                 # fnd 12/3/2025
                 pass
-            case 'get' :                # retrieve and display email Mail object given email ID
-                # example command prompt:
-                # get 10
-                pass
-            case 'lst' :                # display entire mailbox
-                # example command prompt:
-                # lst
-                pass
+            case 'get' :                
+                #  displaying email with given ID
+                getEmailID = args[0]
+                print(mba.get_email(getEmailID))
+            case 'lst' :                
+                # displaying entire mailbox
+                email = mba.show_emails()
+                print(email)
             case 'mrkr':
                 # example command prompt:
                 # mrkr 10
