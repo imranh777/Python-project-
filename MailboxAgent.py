@@ -100,8 +100,39 @@ class MailboxAgent:
     # FB.2
     #
     def mv_email(self, m_id, tag):
-        """ """
-        pass
+        """Move email to a new folder by changing its tag and converting type if needed."""
+
+        index = 0  # manual index counter
+
+        for mail in self._mailbox:
+
+            if mail.m_id == m_id:
+
+                # If moving to confidential
+                if tag.lower() == "conf":
+                    new_mail = Confidential(mail.m_id, mail.frm, mail.to,
+                                            mail.date, mail.subject, tag, mail.body)
+
+                # If moving to personal
+                elif tag.lower() == "prsnl":
+                    new_mail = Personal(mail.m_id, mail.frm, mail.to,
+                                        mail.date, mail.subject, tag, mail.body)
+
+                # Any other tag → general Mail
+                else:
+                    new_mail = Mail(mail.m_id, mail.frm, mail.to,
+                                    mail.date, mail.subject, tag, mail.body)
+
+                # Replace the old email object in the SAME index
+                self._mailbox[index] = new_mail
+
+                return str(new_mail)
+
+            index += 1  # move to next position
+
+        return "Email not found."
+
+
 
     # FB.3
     #

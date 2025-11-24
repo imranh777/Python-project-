@@ -148,9 +148,10 @@ def loop():
                 # mrkf 10
                 pass
             case "mv":  # move email with given ID to folder in given tag
-                # example command prompt:
-                # mv 10 conf
-                pass
+                # getting email ID and tag from args list to move email
+                moveEmailID = args[0]
+                tag = args[1]
+                print(mba.mv_email(moveEmailID, tag))
 
         line = input("mba > ")
         words = line.split(" ")
