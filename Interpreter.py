@@ -128,9 +128,10 @@ def loop():
                 print(mba.filter(sender))
 
             case "fnd":
-                # example command prompt:
-                # fnd 12/3/2025
-                pass
+                # finding emails from given date
+                date = args[0]
+                print(mba.find(date))
+
             case "get":
                 #  displaying email with given ID
                 getEmailID = args[0]
@@ -140,11 +141,11 @@ def loop():
                 email = mba.show_emails()
                 print(email)
             case "mrkr":
-            #    mark email with given ID as Read then display that email
+                #    mark email with given ID as Read then display that email
                 markReadEmailID = args[0]
                 print(mba.mark(markReadEmailID, "read"))
             case "mrkf":
-            #    mark email with given ID as Flagged then display that email
+                #    mark email with given ID as Flagged then display that email
                 markFlagEmailID = args[0]
                 print(mba.mark(markFlagEmailID, "flag"))
             case "mv":  # move email with given ID to folder in given tag

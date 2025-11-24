@@ -88,19 +88,18 @@ class MailboxAgent:
         pass
 
     # FEATURES B (Partner B)
+
     # FB.1
-    #
+    # displaying all the attributes in the pretty format
     def show_emails(self):
-        # displaying all the attributes in the pretty format
         pretty_emails = ""
         for mail in self._mailbox:
             pretty_emails += mail.show_email() + "\n"
         return pretty_emails.strip()
 
     # FB.2
-    #
+    # Move email to a new folder by changing its tag and converting type if needed.
     def mv_email(self, m_id, tag):
-        """Move email to a new folder by changing its tag and converting type if needed."""
 
         index = 0  # manual index counter
 
@@ -110,18 +109,39 @@ class MailboxAgent:
 
                 # If moving to confidential
                 if tag.lower() == "conf":
-                    new_mail = Confidential(mail.m_id, mail.frm, mail.to,
-                                            mail.date, mail.subject, tag, mail.body)
+                    new_mail = Confidential(
+                        mail.m_id,
+                        mail.frm,
+                        mail.to,
+                        mail.date,
+                        mail.subject,
+                        tag,
+                        mail.body,
+                    )
 
                 # If moving to personal
                 elif tag.lower() == "prsnl":
-                    new_mail = Personal(mail.m_id, mail.frm, mail.to,
-                                        mail.date, mail.subject, tag, mail.body)
+                    new_mail = Personal(
+                        mail.m_id,
+                        mail.frm,
+                        mail.to,
+                        mail.date,
+                        mail.subject,
+                        tag,
+                        mail.body,
+                    )
 
                 # Any other tag → general Mail
                 else:
-                    new_mail = Mail(mail.m_id, mail.frm, mail.to,
-                                    mail.date, mail.subject, tag, mail.body)
+                    new_mail = Mail(
+                        mail.m_id,
+                        mail.frm,
+                        mail.to,
+                        mail.date,
+                        mail.subject,
+                        tag,
+                        mail.body,
+                    )
 
                 # Replace the old email object in the SAME index
                 self._mailbox[index] = new_mail
@@ -132,12 +152,10 @@ class MailboxAgent:
 
         return "Email not found."
 
-
-
     # FB.3
-    #
+    # Mark email as Read or Flagged based on m_type.
+
     def mark(self, m_id, m_type):
-        """Mark email as Read or Flagged based on m_type."""
         for mail in self._mailbox:
             if mail.m_id == m_id:
                 if m_type.lower() == "read":
@@ -146,11 +164,22 @@ class MailboxAgent:
                     mail._flag = True
                 return str(mail)
         return "Email not found."
+
     # FB.4
-    #
+    # Find and return all emails received on the given date.
+
     def find(self, date):
-        """ """
-        pass
+
+        found = []
+
+        for mail in self._mailbox:
+            if mail.date == date:
+                found.append(mail.show_email())
+
+        if not found:
+            return "No emails found on that date."
+
+        return "\n\n".join(found)
 
     # FB.5
     #
@@ -159,9 +188,8 @@ class MailboxAgent:
         pass
 
     # FEATURE 6 (Partners A and B)
-    # add_email method to create email object and add to mailbox
+    # Creating a new email object with unique m_id and add it to mailbox.
     def add_email(self, frm, to, date, subject, tag, body):
-        """Create a new email object with unique m_id and add it to mailbox."""
 
         # Generate unique numeric m_id
         if len(self._mailbox) == 0:
