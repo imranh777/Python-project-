@@ -16,7 +16,6 @@
 from MailboxAgent import *
 import random, string
 
-
 # gen_bdy Generates random text for the email body
 # DO NOT MODIFY
 def gen_bdy():
@@ -29,7 +28,6 @@ def gen_bdy():
             + " "
         )
     return f"Body{str(random.randint(0, 140))}. {snt.capitalize()[:-1]}."
-
 
 # gen_msg generates a string of emails separated by "----"
 #    Used to simulate emails in Outlook mailboxes

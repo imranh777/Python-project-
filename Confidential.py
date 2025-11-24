@@ -13,8 +13,8 @@ from Mail import *
 
 
 # FA.5.a
+# defining Confidential class that inherits from Mail class
 class Confidential(Mail):
-    """Confidential email type — encrypts body on creation."""
 
     def __init__(self, m_id, frm, to, date, subject, tag, body):
         # do not change the attributes defined in Mail
@@ -50,9 +50,7 @@ class Confidential(Mail):
 
     # FA.5.c
     # defining show_email method for pretty-printing confidential emails
-
     def show_email(self):
-        """Pretty-print ONLY for confidential emails."""
         return (
             "CONFIDENTIAL\n"
             f"From: {self.frm}\n"

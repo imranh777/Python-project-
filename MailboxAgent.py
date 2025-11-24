@@ -15,7 +15,6 @@ from Mail import *
 from Confidential import *
 from Personal import *
 
-
 class MailboxAgent:
     """<This is the documentation for MailboxAgent. Complete the docstring for this class."""
 
@@ -49,9 +48,8 @@ class MailboxAgent:
 
     # FEATURES A (Partner A)
     # FA.1
-    #
+    # defining get_email method to retrieve email by ID and mark it as read
     def get_email(self, m_id):
-        #    get given email id from mailbox
         for mail in self._mailbox:
             if mail.m_id == m_id:
                 mail._read = True
@@ -80,8 +78,9 @@ class MailboxAgent:
             return "No emails found from the given sender."
         return "\n\n".join(filtered_emails)
 
+
     # FA.5
-    #
+    # sorting emails based on the sender's email address
     def sort_date(self):
         """ """
         pass
@@ -99,13 +98,10 @@ class MailboxAgent:
     # FB.2
     # Move email to a new folder by changing its tag and converting type if needed.
     def mv_email(self, m_id, tag):
-
         index = 0  # manual index counter
 
         for mail in self._mailbox:
-
             if mail.m_id == m_id:
-
                 # If moving to confidential
                 if tag.lower() == "conf":
                     new_mail = Confidential(
@@ -153,7 +149,6 @@ class MailboxAgent:
 
     # FB.3
     # Mark email as Read or Flagged based on m_type.
-
     def mark(self, m_id, m_type):
         for mail in self._mailbox:
             if mail.m_id == m_id:
@@ -166,7 +161,6 @@ class MailboxAgent:
 
     # FB.4
     # Find and return all emails received on the given date.
-
     def find(self, date):
 
         found = []
