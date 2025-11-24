@@ -140,13 +140,13 @@ def loop():
                 email = mba.show_emails()
                 print(email)
             case "mrkr":
-                # example command prompt:
-                # mrkr 10
-                pass
+            #    mark email with given ID as Read then display that email
+                markReadEmailID = args[0]
+                print(mba.mark(markReadEmailID, "read"))
             case "mrkf":
-                # example command prompt:
-                # mrkf 10
-                pass
+            #    mark email with given ID as Flagged then display that email
+                markFlagEmailID = args[0]
+                print(mba.mark(markFlagEmailID, "flag"))
             case "mv":  # move email with given ID to folder in given tag
                 # getting email ID and tag from args list to move email
                 moveEmailID = args[0]

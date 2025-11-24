@@ -137,9 +137,15 @@ class MailboxAgent:
     # FB.3
     #
     def mark(self, m_id, m_type):
-        """ """
-        pass
-
+        """Mark email as Read or Flagged based on m_type."""
+        for mail in self._mailbox:
+            if mail.m_id == m_id:
+                if m_type.lower() == "read":
+                    mail._read = True
+                elif m_type.lower() == "flag":
+                    mail._flag = True
+                return str(mail)
+        return "Email not found."
     # FB.4
     #
     def find(self, date):
