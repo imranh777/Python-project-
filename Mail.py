@@ -3,7 +3,7 @@
 ###            Mail Class                                                             ###
 ###            <describe the purpose and overall functionality of the class defined here>     ###
 ### Partner A:                                                                                ###
-###            <Full name as appears on Moodle>, SID<student ID>                              ###
+###            Ruhul Amin, SID 001507871                             ###
 ### Partner B:                                                                                ###
 ###            <Full name as appears on Moodle>, SID<student ID>                              ###
 #################################################################################################
@@ -28,7 +28,7 @@ class Mail:
 
     # Format should be done from pretty print.
     def __str__(self):
-        return f"m_id:{self.m_id}\tfrom:{self.frm}\t|{self.to}\t|{self.date}|{self.subject}|{self.tag}|{self.read}|{self.flag}"
+        return (self.show_email()) #calling show_email method to get pretty-print format of email
 
     @property
     def m_id(self):
@@ -83,5 +83,19 @@ class Mail:
     # FA.2
     #
     def show_email(self):
-        """  """
-        pass
+        #  all the emails details in a pretty format
+        pretty_format = (
+            "-------------------------\n"
+            f"m_id: {self.m_id}\n"
+            f"From: {self.frm}\n"
+            f"To: {self.to}\n"
+            f"Date: {self.date}\n"
+            f"Subject: {self.subject}\n"
+            f"Tag: {self.tag}\n"
+            f"Flag: {self.flag}\n"
+            f"Read: {self.read}\n"
+            f"Body: {self.body}\n"
+            "-------------------------"
+        )
+        return pretty_format
+    

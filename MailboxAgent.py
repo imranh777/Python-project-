@@ -3,7 +3,7 @@
 ###            MailboxAgent Class                                                             ###
 ###            <describe the purpose and overall functionality of the class defined here>     ###
 ### Partner A:                                                                                ###
-###            <Full name as appears on Moodle>, SID<student ID>                              ###
+###            Ruhul Amin, SID 001507871                              ###
 ### Partner B:                                                                                ###
 ###            <Full name as appears on Moodle>, SID<student ID>                              ###
 #################################################################################################
@@ -39,20 +39,36 @@ class MailboxAgent:
     # FA.1
     # 
     def get_email(self, m_id):
-        """ """
-        pass
+    #    get given email id from mailbox
+        for mail in self._mailbox:
+            if mail.m_id == m_id:
+                mail._read = True
+                return str(mail)
+        return "Email not found."
 
     # FA.3
-    # 
+    # A.3 Delete email with given ID and change current tag to bin then display that email
     def del_email(self, m_id):
-        """  """
-        pass
-
+        for mail in self._mailbox:
+            if mail.m_id == m_id:
+                mail._tag = 'bin'   # changing the tag to bin
+                mail._read = True
+                return str(mail)
+        return "Email not found."
+    
     # FA.4
     # 
     def filter(self, frm):
-        """  """
-        pass
+        # filtering emails with the email address from the mailbox
+        filtered_emails = []
+        for mail in self._mailbox:
+            if mail.frm == frm:
+                filtered_emails.append(mail.show_email())  
+
+        if not filtered_emails:
+            return "No emails found from the given sender."
+        return "\n\n".join(filtered_emails)
+
 
     # FA.5
     # 
@@ -63,70 +79,69 @@ class MailboxAgent:
 
 # FEATURES B (Partner B)
     # FB.1
+    # 
     def show_emails(self):
-        print(f"{'ID':<4} {'From':<25} {'To':<25} {'Date':<12} {'Subject':<15} {'Tag':<8} Body")
-
-        for email in self._mailbox:
-            print(f"{email.m_id:<4} {email.frm:<25} {email.to:<25} {email.date:<12} "
-                  f"{email.subject:<15} {email.tag:<8} {email.body}")
+        # displaying all the attributes in the pretty format
+        pretty_emails = ""
+        for mail in self._mailbox:
+            pretty_emails += mail.show_email() + "\n"
+        return pretty_emails.strip()
 
     # FB.2
     # 
     def mv_email(self, m_id, tag):
-            for email in self._mailbox:
-                if email.m_id == m_id:
-                    email.tag = tag
-                    return email
-            return None
+        """  """
+        pass
 
     # FB.3
     # 
     def mark(self, m_id, m_type):
-        for email in self._mailbox:
-            if email.m_id == m_id:
-                if m_type == "read":
-                    email.read = True
-                elif m_type == "flag":
-                    email.flag = True
-                return email
-        return None
+        """  """
+        pass
 
     # FB.4
     # 
     def find(self, date):
-        results = []
-        for email in self._mailbox:
-            if email.date == date:
-                results.append(email)
-        return results
+        """  """
+        pass
 
-    # FB.6
-    #
+    # FB.5
+    # 
+    def sort_from(self):
+        """  """
+        pass
+
+
+# FEATURE 6 (Partners A and B)
+    # 
     def add_email(self, frm, to, date, subject, tag, body):
-        # 1. Generate unique ID based on current number of emails
-        m_id = len(self._mailbox) + 1
+        """Create a new email object with unique m_id and add it to mailbox."""
 
-        # 2. Create the correct email type based on tag
-        if tag == "conf":
-            email = Confidential(m_id, frm, to, date, subject, tag, body)
-        elif tag == "prsnl":
-            email = Personal(m_id, frm, to, date, subject, tag, body)
+        #  Generate unique numeric m_id
+        if len(self._mailbox) == 0:
+            m_id = "0"
         else:
-            email = Mail(m_id, frm, to, date, subject, tag, body)
+            # convert all m_id to int and get max
+            ids = [int(mail.m_id) for mail in self._mailbox]
+            m_id = str(max(ids) + 1)
 
-        # 3. Assign ID to email
-        email.m_id = m_id
+        # Create correct email type depending on tag
+        tag_lower = tag.lower()
 
-        # 4. Add the new email to the mailbox
-        self._mailbox.append(email)
+        if tag_lower == "conf":
+            # Confidential email object
+            new_email = Confidential(m_id, frm, to, date, subject, tag, body)
 
-        # 5. Return the email so the interpreter can display it
-        return email
+        elif tag_lower == "prsnl":
+            # Personal email object
+            new_email = Personal(m_id, frm, to, date, subject, tag, body)
 
-    
+        else:
+            # General Mail email object
+            new_email = Mail(m_id, frm, to, date, subject, tag, body)
 
+        # Append to mailbox
+        self._mailbox.append(new_email)
 
-
-
-
+        return new_email
 
