@@ -113,35 +113,34 @@ class MailboxAgent:
 
 
 # FEATURE 6 (Partners A and B)
-    # 
+    # add_email method to create email object and add to mailbox
     def add_email(self, frm, to, date, subject, tag, body):
         """Create a new email object with unique m_id and add it to mailbox."""
 
-        #  Generate unique numeric m_id
+        # Generate unique numeric m_id
         if len(self._mailbox) == 0:
             m_id = "0"
         else:
-            # convert all m_id to int and get max
             ids = [int(mail.m_id) for mail in self._mailbox]
             m_id = str(max(ids) + 1)
 
-        # Create correct email type depending on tag
-        tag_lower = tag.lower()
+        # Determine email type based on tag
+        match tag.lower():
+            # FA.6 - Confidential email
+            case 'conf':
+                new_email = Confidential(m_id, frm, to, date, subject, tag, body)
 
-        if tag_lower == "conf":
-            # Confidential email object
-            new_email = Confidential(m_id, frm, to, date, subject, tag, body)
+            # FB.6 - Personal email
+            case 'prsnl':
+                new_email = Personal(m_id, frm, to, date, subject, tag, body)
 
-        elif tag_lower == "prsnl":
-            # Personal email object
-            new_email = Personal(m_id, frm, to, date, subject, tag, body)
+            # FA&B.6 - General email
+            case _:
+                new_email = Mail(m_id, frm, to, date, subject, tag, body)
 
-        else:
-            # General Mail email object
-            new_email = Mail(m_id, frm, to, date, subject, tag, body)
-
-        # Append to mailbox
+        # Add the new email to the mailbox
         self._mailbox.append(new_email)
 
         return new_email
+
 
