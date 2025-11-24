@@ -22,7 +22,7 @@ class Confidential(Mail):
         # calling encrypt method to encrypt the body of confidential email
         self.encrypt()
 
-        # FA.5.b
+    # FA.5.b
 
     # defining encrypt method for encrypting the body of confidential emails
     def encrypt(self):
@@ -48,8 +48,8 @@ class Confidential(Mail):
 
         self._body = "".join(encrypted)
 
-        # FA.5.c
-        # defining show_email method for pretty-printing confidential emails
+    # FA.5.c
+    # defining show_email method for pretty-printing confidential emails
 
     def show_email(self):
         """Pretty-print ONLY for confidential emails."""
