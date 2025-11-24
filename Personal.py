@@ -13,12 +13,13 @@
 # FB.5.a
 from Mail import Mail
 
+
 class Personal(Mail):
     def __init__(self, m_id, frm, to, date, subject, tag, body):
         super().__init__(m_id, frm, to, date, subject, tag, body)
         self._body = self.add_stats(self._body)
 
-# defining show_email method for pretty-printing personal emails
+    # defining show_email method for pretty-printing personal emails
     def show_email(self):
         """Pretty-print ONLY for personal emails."""
         return (
@@ -27,10 +28,10 @@ class Personal(Mail):
             f"Date: {self.date}\n"
             f"Subject: {self.subject}\n"
             f"Body:{self.body}\n"
-            f"Read " + ('Yes' if self._read else 'No') + "\n"
+            f"Read " + ("Yes" if self._read else "No") + "\n"
             "------------------------------"
         )
-        
+
     # FB.5.b
     #
     def add_stats(self, body):
@@ -57,17 +58,3 @@ class Personal(Mail):
 
         # 6. Return modified body with stats added
         return body + stats
-
-
-
-
-
-
-
-
-
-
-
-
-
-
