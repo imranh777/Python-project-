@@ -3,7 +3,7 @@
 ###            Personal Class                                                             ###
 ###            <describe the purpose and overall functionality of the class defined here>     ###
 ### Partner B:                                                                                ###
-###            <Full name as appears on Moodle>, SID<student ID>                              ###
+###              Imran  Hussain, SID 001223419                               ###
 #################################################################################################
 
 # DO NOT CHANGE CLASS OR METHOD NAMES/SIGNATURES

@@ -5,7 +5,7 @@
 ### Partner A:                                                                                ###
 ###            Ruhul Amin, SID 001507871                             ###
 ### Partner B:                                                                                ###
-###            <Full name as appears on Moodle>, SID<student ID>                              ###
+###            Imran  Hussain, SID 001223419                              ###
 #################################################################################################
 
 # DO NOT CHANGE CLASS OR METHOD NAMES
