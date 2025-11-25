@@ -12,23 +12,24 @@
 # replace "pass" with your own code as specified in the CW spec.
 
 class Mail:
-    """ """
     # DO NOT CHANGE CLASS OR METHOD NAMES
-    def  __init__(self,m_id,frm,to,date,subject,tag,body):
+    def __init__(self, m_id, frm, to, date, subject, tag, body):
         self._m_id = m_id
         self._frm = frm
         self._to = to
         self._subject = subject
         self._date = date
-        self._tag = tag      # reference to Outlook mail folder email is stored in
-                             # e.g. tag0 = inbox, tag1 = bin, tag2 = private, tag3 = bank_acct, tag4 = COMP1811, etc.
+        self._tag = tag  # reference to Outlook mail folder email is stored in
+        # e.g. tag0 = inbox, tag1 = bin, tag2 = private, tag3 = bank_acct, tag4 = COMP1811, etc.
         self._body = body
-        self._flag = False   # Boolean indicating whether email is important
-        self._read = False   # Boolean indicating whether the email is read or not.
+        self._flag = False  # Boolean indicating whether email is important
+        self._read = False  # Boolean indicating whether the email is read or not.
 
     # Format should be done from pretty print.
     def __str__(self):
-        return (self.show_email()) #calling show_email method to get pretty-print format of email
+        return (
+            self.show_email()
+        )  # calling show_email method to get pretty-print format of email
 
     @property
     def m_id(self):
@@ -72,18 +73,17 @@ class Mail:
         self._tag = value
 
     @read.setter
-    def read(self,value):
+    def read(self, value):
         self._read = value
 
     @flag.setter
-    def flag(self,value):
+    def flag(self, value):
         self._flag = value
 
-# FEATURES A (Partner A)
+    # FEATURES A (Partner A)
     # FA.2
-    #
+    # all the emails details in a pretty format
     def show_email(self):
-        #  all the emails details in a pretty format
         pretty_format = (
             "-------------------------\n"
             f"m_id: {self.m_id}\n"
@@ -98,4 +98,3 @@ class Mail:
             "-------------------------"
         )
         return pretty_format
-    
