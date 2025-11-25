@@ -11,7 +11,7 @@
 
 
 # FB.5.a
-from Mail import Mail
+from Mail import *
 
 class Personal(Mail):
     def __init__(self, m_id, frm, to, date, subject, tag, body):
