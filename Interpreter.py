@@ -5,9 +5,9 @@
 ###            automatically in response to user commands via an interactive command-line     ###
 ###            interface. The interpreter represents the user interacting with their mailbox. ###
 ### Partner A:                                                                                ###
-###         Ruhul Amin, SID 001507871                                                         ###
+###             Ruhul Amin, SID 001507871                                                         ###
 ### Partner B:                                                                                ###
-###            <Full name as appears on Moodle>, SID<student ID>                              ###
+###              Imran  Hussain, SID 001223419                              ###
 #################################################################################################
 
 # DO NOT CHANGE FUNCTION NAMES

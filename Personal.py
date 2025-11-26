@@ -3,7 +3,7 @@
 ###            Personal Class                                                             ###
 ###            <describe the purpose and overall functionality of the class defined here>     ###
 ### Partner B:                                                                                ###
-###            <Full name as appears on Moodle>, SID<student ID>                              ###
+###              Imran  Hussain, SID 001223419                               ###
 #################################################################################################
 
 # DO NOT CHANGE CLASS OR METHOD NAMES/SIGNATURES
@@ -11,7 +11,7 @@
 
 
 # FB.5.a
-from Mail import Mail
+from Mail import *
 
 class Personal(Mail):
     def __init__(self, m_id, frm, to, date, subject, tag, body):
